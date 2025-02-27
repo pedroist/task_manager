@@ -24,7 +24,10 @@ A FastAPI-based backend service for managing tasks within small teams. This API 
 
 ```
 poetry init
+
 poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv
+
+poetry run alembic init alembic
 ```
 
 ## Explanation of Dependencies
