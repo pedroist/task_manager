@@ -25,7 +25,7 @@ A FastAPI-based backend service for managing tasks within small teams. This API 
 ```
 poetry init
 
-poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv
+poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv pydantic-settings
 
 poetry run alembic init alembic
 ```
@@ -39,4 +39,10 @@ poetry run alembic init alembic
 - passlib → For password hashing.
 - python-jose[cryptography] → For JWT authentication.
 - pydantic → Data validation and serialization.
+- pydantic-settings → Settings management using Pydantic models. Allows you to:
+  - Load environment variables with type validation
+  - Provide default values for settings
+  - Automatically parse environment variables into Python types (int, bool, etc.)
+  - Nest settings models
+  - Load settings from .env files, environment variables, or secrets files
 - python-dotenv → Loads .env files for environment variables.
