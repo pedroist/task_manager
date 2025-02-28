@@ -29,6 +29,24 @@ poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryp
 
 poetry run alembic init alembic
 ```
+After the skeleton of the project is created, we should create the postgres db:
+
+```
+psql postgres
+
+CREATE DATABASE task_manager;
+```
+Verify that the db is created:
+
+```
+\l
+```
+
+Exit psql:
+
+```
+\q
+```
 
 ## Explanation of Dependencies
 - fastapi → The main web framework.
