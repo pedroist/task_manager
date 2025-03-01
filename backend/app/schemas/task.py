@@ -32,4 +32,3 @@ class Task(TaskBase):
     creator: UserBasic        # Use object instead of ID
     assignee: Optional[UserBasic] = None  # Use object instead of ID
     model_config = ConfigDict(from_attributes=True)
-    
