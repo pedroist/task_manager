@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
 from .db.session import engine
 from .models.base import Base
+from .api.v1.api import api_router
 
 def create_application() -> FastAPI:
     application = FastAPI(
@@ -19,6 +20,9 @@ def create_application() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # Include the API router
+    application.include_router(api_router, prefix=settings.API_V1_STR)
 
     return application
 
