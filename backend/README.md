@@ -66,3 +66,31 @@ Exit psql:
 - python-dotenv → Loads .env files for environment variables.
 - email-validator → Provides email validation for Pydantic's EmailStr type.
 - python-multipart → Enables parsing of form data, required for OAuth2 password flow.
+
+## Create Alembic migrations:
+
+First we need to add the models to the alembic/env.py file:
+
+```
+from app.models.user import User
+from app.models.task import Task
+```
+
+Then we can create the migration:
+
+```
+poetry run alembic revision --autogenerate -m "Create initial tables"
+```
+
+- This command tells Alembic to automatically detect your SQLAlchemy models
+- It creates a migration file based on the differences between your models and the current database state
+- The -m flag provides a description message for the migration
+
+## Apply Alembic migrations
+
+```
+poetry run alembic upgrade head
+```
+
+- This command applies the latest migration to the database
+- The head flag indicates that the latest revision should be applied

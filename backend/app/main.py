@@ -28,9 +28,6 @@ def create_application() -> FastAPI:
 
 app = create_application()
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
 @app.get("/")
 async def root():
     return {"message": "Welcome to Task Management API"}
