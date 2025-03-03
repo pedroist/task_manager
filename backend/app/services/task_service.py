@@ -1,14 +1,14 @@
 from typing import List
 from fastapi import Depends, HTTPException, status
-from app.models.database_task import Task as DatabaseTask
-from app.models.database_user import User as DatabaseUser, UserRole
-from app.schemas.task_schema import Task, TaskCreate, TaskUpdate
+from app.models.user import User as DatabaseUser, UserRole
+from app.schemas.task import Task, TaskCreate, TaskUpdate
 from app.repositories.task_repository import TaskRepository
+
 
 class TaskService:
     def __init__(
-        self,
-        task_repository: TaskRepository = Depends()
+            self,
+            task_repository: TaskRepository = Depends()
     ) -> None:
         self.repository = task_repository
 
@@ -30,8 +30,8 @@ class TaskService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Task not found"
             )
-        if (db_current_user.role != UserRole.MANAGER and 
-            db_current_user.id not in [db_task.creator_id, db_task.assignee_id]):
+        if (db_current_user.role != UserRole.MANAGER and
+                db_current_user.id not in [db_task.creator_id, db_task.assignee_id]):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Not enough permissions"
@@ -50,4 +50,4 @@ class TaskService:
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Not enough permissions"
             )
-        self.repository.delete(task_id) 
+        self.repository.delete(task_id)

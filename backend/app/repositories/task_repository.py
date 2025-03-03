@@ -1,9 +1,10 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from fastapi import Depends
-from app.models.database_task import Task as DatabaseTask
-from app.schemas.task_schema import TaskCreate, TaskUpdate
+from app.models.task import Task as DatabaseTask
+from app.schemas.task import TaskCreate, TaskUpdate
 from app.db.session import get_db
+
 
 class TaskRepository:
     def __init__(self, db: Session = Depends(get_db)) -> None:
@@ -46,4 +47,4 @@ class TaskRepository:
     def delete(self, id: int) -> None:
         obj = self.db.query(DatabaseTask).get(id)
         self.db.delete(obj)
-        self.db.commit() 
+        self.db.commit()

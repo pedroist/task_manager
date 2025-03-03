@@ -7,6 +7,7 @@ ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 
+
 class BaseRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType], db: Session):
         self.model = model
@@ -38,4 +39,4 @@ class BaseRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def delete(self, id: int) -> None:
         obj = self.db.query(self.model).get(id)
         self.db.delete(obj)
-        self.db.commit() 
+        self.db.commit()
