@@ -25,7 +25,7 @@ A FastAPI-based backend service for managing tasks within small teams. This API 
 ```
 poetry init
 
-poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv pydantic-settings email-validator
+poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv pydantic-settings email-validator python-multipart
 
 poetry run alembic init alembic
 ```
@@ -64,7 +64,5 @@ Exit psql:
   - Nest settings models
   - Load settings from .env files, environment variables, or secrets files
 - python-dotenv → Loads .env files for environment variables.
-- email-validator → Provides email validation for Pydantic's EmailStr type. Used to:
-  - Validate email addresses format
-  - Check for common email mistakes
-  - Ensure RFC compliance for email fields
+- email-validator → Provides email validation for Pydantic's EmailStr type.
+- python-multipart → Enables parsing of form data, required for OAuth2 password flow.
