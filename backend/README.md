@@ -25,7 +25,7 @@ A FastAPI-based backend service for managing tasks within small teams. This API 
 ```
 poetry init
 
-poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv pydantic-settings email-validator python-multipart
+poetry add fastapi uvicorn sqlalchemy psycopg2 alembic passlib "python-jose[cryptography]" pydantic python-dotenv pydantic-settings email-validator python-multipart bcrypt
 
 poetry run alembic init alembic
 ```
@@ -66,6 +66,7 @@ Exit psql:
 - python-dotenv → Loads .env files for environment variables.
 - email-validator → Provides email validation for Pydantic's EmailStr type.
 - python-multipart → Enables parsing of form data, required for OAuth2 password flow.
+- bcrypt → Backend for passlib, provides the actual password hashing implementation.
 
 ## Create Alembic migrations:
 
@@ -94,3 +95,12 @@ poetry run alembic upgrade head
 
 - This command applies the latest migration to the database
 - The head flag indicates that the latest revision should be applied
+
+```
+poetry run alembic revision -m "Add initial data"
+
+```
+
+- This command creates a new migration file with the specified message
+- It's useful for adding initial data to the database
+
